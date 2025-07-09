@@ -1,0 +1,75 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 120px;
+  width: 100%;
+  border-bottom: 1px solid rgba(25, 26, 21, 0.2);
+}
+
+.wrapper {
+  display: flex;
+  gap: 130px;
+  align-items: center;
+}
+
+.navPage {
+  display: flex;
+  gap: 40px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.navUser {
+  display: flex;
+  gap: 8px;
+}
+
+.logo {
+  background-color: var(--main-white);
+  color: var(--main-black);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.span {
+  color: var(--main-button);
+}
+
+.link {
+  position: relative;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: var(--main-button);
+  border-radius: 50%;
+}
+
+.userLink {
+  display: inline-block;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  padding: 14px 39px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #191a15;
+}
+
+/* .userActive {
+  color: var(--main-white);
+  background-color: var(--main-button);
+} */
