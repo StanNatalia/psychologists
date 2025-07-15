@@ -69,7 +69,7 @@
   color: #191a15;
 }
 
-/* .userActive {
+.userActive {
   color: var(--main-white);
   background-color: var(--main-button);
-} */
+}
