@@ -25,6 +25,16 @@ const Hero = () => {
           alt="Woman listening carefully"
           className={css.img}
         />
+        <div className={css.detail1}>
+          <svg width="15" height="25" className={css.svg1}>
+            <use href="/public/sprite.svg#icon-question" />
+          </svg>
+        </div>
+        <div className={css.detail2}>
+          <svg width="20" height="20" className={css.svg2}>
+            <use href="/public/sprite.svg#icon-users" />
+          </svg>
+        </div>
         <div className={css.rectangle}>
           <div className={css.square}>
             <svg width="30" height="30">

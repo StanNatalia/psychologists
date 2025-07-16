@@ -16,7 +16,7 @@
   font-size: 18px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  width: 510px;
+  width: 500px;
   margin-bottom: 40px;
 }
 
@@ -54,8 +54,8 @@
 
 .rectangle {
   position: absolute;
-  top: 50%;
-  left: 63%;
+  top: 76%;
+  left: 62%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   width: 311px;
@@ -80,12 +80,12 @@
 .detailWrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .about {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 13px;
   color: rgba(251, 251, 251, 0.5);
 }
 
@@ -93,4 +93,40 @@
   font-weight: 700;
   font-size: 24px;
   color: var(--main-white);
+}
+.detail1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #4535af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+.svg1 {
+  transform: rotate(15deg);
+}
+
+.detail2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #fbc75e;
+  transform: rotate(-15deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 32%;
+  left: 89%;
+  transform: translate(-50%, -50%) rotate(15deg);
+}
+
+.svg2 {
+  transform: rotate(-15deg);
 }
