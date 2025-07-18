@@ -46,16 +46,24 @@
   background-color: var(--main-button);
 }
 
-.img {
-  width: 464px;
-  height: 526px;
+.wrapperPhoto {
   position: relative;
 }
 
+.img {
+  width: 464px;
+  height: auto;
+}
+
+.detail1,
+.detail2,
 .rectangle {
   position: absolute;
-  top: 76%;
-  left: 62%;
+}
+
+.rectangle {
+  top: 75%;
+  left: 12%;
   transform: translate(-50%, -50%);
   border-radius: 20px;
   width: 311px;
@@ -104,7 +112,7 @@
   align-items: center;
   position: absolute;
   top: 50%;
-  left: 58%;
+  left: -2%;
   transform: translate(-50%, -50%) rotate(-15deg);
 }
 
@@ -113,8 +121,8 @@
 }
 
 .detail2 {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 10px;
   background: #fbc75e;
   transform: rotate(-15deg);
@@ -122,8 +130,8 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 32%;
-  left: 89%;
+  top: 14%;
+  left: 103%;
   transform: translate(-50%, -50%) rotate(15deg);
 }
 

@@ -1,34 +1,45 @@
-import { Field, Form, Formik } from "formik";
 import css from "./RegistrationForm.module.css";
-import * as Yup from "yup";
-import { BsEyeSlash } from "react-icons/bs";
+import { PiEyeSlash } from "react-icons/pi";
+import { PiEyeLight } from "react-icons/pi";
+import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
-const RegistrationForm = () => {
-  const initialValues = {
-    name: "",
-    email: "",
-    password: "",
+const RegistrationForm = ({ onClose }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
   };
 
-  const onlyLetter = /^[a-zA-Zа-яА-ЯёЁ\s]+$/;
+  const [showPassword, setShowPassword] = useState(false);
 
-  const applySchema = Yup.object().shape({
-    name: Yup.string()
-      .required("this field is required")
-      .min(2, "at list 2 letters")
-      .max(20, "maximum 20 letters")
-      .matches(onlyLetter, "Only letters"),
-    email: Yup.string()
-      .required("this field is required")
-      .email("Invalid email format"),
-    password: Yup.string()
-      .required("this field is required")
-      .min(6, "at least 6 signs"),
-  });
+  const togglePassword = () => setShowPassword((prev) => !prev);
 
   return (
     <div className={css.formWrapper}>
-      <svg width="32" height="32" className={css.closeIcon}>
+      <svg width="32" height="32" className={css.closeIcon} onClick={onClose}>
         <use href="/public/sprite.svg#icon-close" />
       </svg>
       <h3 className={css.name}>Registration</h3>
@@ -36,41 +47,84 @@ const RegistrationForm = () => {
         Thank you for your interest in our platform! In order to register, we
         need some information. Please provide us with the following information.
       </p>
-      <Formik
-        validationSchema={applySchema}
-        initialValues={initialValues}
-        className={css.form}
-      >
-        {() => (
-          <Form>
-            <div className={css.form}>
-              <div className={css.inputWrapper}>
-                <Field className={css.field} name="name" placeholder="Name" />
-              </div>
-              <div className={css.inputWrapper}>
-                <Field
-                  className={css.field}
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                />
-              </div>
-              <div className={css.inputWrapper}>
-                <Field
-                  className={css.field}
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                />
-                <BsEyeSlash size={20} className={css.eye} />
-              </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={css.form}>
+          <div className={css.inputWrapper}>
+            <input
+              {...register("name", {
+                required: "this field is required",
+                pattern: {
+                  value: /^[a-zA-Zа-яА-ЯёЁ\s]+$/,
+                  message: "only letters",
+                },
+                maxLength: {
+                  value: 25,
+                  message: "name can contain no more than 25 characters",
+                },
+                minLength: {
+                  value: 2,
+                  message: "name must be at least 2 characters",
+                },
+              })}
+              type="text"
+              className={css.field}
+              name="name"
+              placeholder="Name"
+            />
+            {errors?.name && (
+              <div className={css.errorMessage}>{errors.name.message}</div>
+            )}
+          </div>
+          <div className={css.inputWrapper}>
+            <input
+              {...register("email", {
+                required: "this field is required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email format",
+                },
+              })}
+              className={css.field}
+              name="email"
+              type="email"
+              placeholder="Email"
+            />
+            {errors?.email && (
+              <div className={css.errorMessage}>{errors.email.message}</div>
+            )}
+          </div>
+          <div className={css.inputWrapper}>
+            <div className={css.inputWithIcon}>
+              <input
+                {...register("password", {
+                  required: "this field is required",
+                  minLength: {
+                    value: 6,
+                    message: "password must be at least 6 characters",
+                  },
+                })}
+                className={css.field}
+                name="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+              />
+              <span onClick={togglePassword} className={css.eye}>
+                {showPassword ? (
+                  <PiEyeLight size={20} />
+                ) : (
+                  <PiEyeSlash size={20} />
+                )}
+              </span>
             </div>
-            <button type="submit" className={css.btn}>
-              Sign Up
-            </button>
-          </Form>
-        )}
-      </Formik>
+            {errors?.password && (
+              <div className={css.errorMessage}>{errors.password.message}</div>
+            )}
+          </div>
+        </div>
+        <button type="submit" className={css.btn}>
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 };

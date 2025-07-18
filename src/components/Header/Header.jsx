@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import css from "./Header.module.css";
 import clsx from "clsx";
 
@@ -11,6 +11,7 @@ const buildLinkUser = ({ isActive }) => {
 };
 
 const Header = () => {
+  const location = useLocation();
   return (
     <>
       <header className={css.header}>
@@ -30,10 +31,18 @@ const Header = () => {
           </nav>
         </div>
         <nav className={css.navUser}>
-          <NavLink className={buildLinkUser} to="/login">
+          <NavLink
+            className={buildLinkUser}
+            to="/login"
+            state={{ backgroundLocation: location }}
+          >
             Log In
           </NavLink>
-          <NavLink className={buildLinkUser} to="/registration">
+          <NavLink
+            className={buildLinkUser}
+            to="/registration"
+            state={{ backgroundLocation: location }}
+          >
             Registration
           </NavLink>
         </nav>

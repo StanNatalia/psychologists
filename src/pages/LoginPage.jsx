@@ -1,9 +1,9 @@
 import LoginForm from "../components/LoginForm/LoginForm";
 
-const LoginPage = () => {
+const LoginPage = ({ onClose }) => {
   return (
     <div>
-      <LoginForm />
+      <LoginForm onClose={onClose} />
     </div>
   );
 };

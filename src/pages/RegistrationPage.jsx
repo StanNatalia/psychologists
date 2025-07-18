@@ -1,9 +1,9 @@
 import RegistrationForm from "../components/RegistrationForm/RegistrationForm";
 
-const RegistrationPage = () => {
+const RegistrationPage = ({ onClose }) => {
   return (
     <div>
-      <RegistrationForm />
+      <RegistrationForm onClose={onClose} />
     </div>
   );
 };
