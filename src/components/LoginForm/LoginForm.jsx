@@ -3,6 +3,14 @@ import { PiEyeSlash } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../../redux/slices/userSlice";
 
 const LoginForm = ({ onClose }) => {
   const {
@@ -17,6 +25,33 @@ const LoginForm = ({ onClose }) => {
     },
   });
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = ({ email, password }) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        return user;
+      })
+      .then((user) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        reset();
+        onClose();
+        navigate("/psychologists");
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+      });
+  };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -26,11 +61,6 @@ const LoginForm = ({ onClose }) => {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
-
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
 
   const [showPassword, setShowPassword] = useState(false);
 

@@ -1,5 +1,18 @@
+import { useAuth } from "../hooks/use-auth.js";
+import { Navigate } from "react-router-dom";
+
 const FavoritesPage = () => {
-  return <div></div>;
+  const { isAuth, email } = useAuth();
+
+  if (!isAuth) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return (
+    <>
+      <h1>Hello</h1>
+    </>
+  );
 };
 
 export default FavoritesPage;

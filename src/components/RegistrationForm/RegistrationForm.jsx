@@ -3,6 +3,11 @@ import { PiEyeSlash } from "react-icons/pi";
 import { PiEyeLight } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = ({ onClose }) => {
   const {
@@ -28,9 +33,33 @@ const RegistrationForm = ({ onClose }) => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = ({ name, email, password }) => {
+    const auth = getAuth();
+    console.log(auth);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        return updateProfile(user, { displayName: name }).then(() => user);
+      })
+      .then((user) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        reset();
+        onClose();
+        navigate("/psychologists");
+      })
+      .catch((error) => {
+        console.error("Registration error:", error);
+      });
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +69,7 @@ const RegistrationForm = ({ onClose }) => {
   return (
     <div className={css.formWrapper}>
       <svg width="32" height="32" className={css.closeIcon} onClick={onClose}>
-        <use href="/public/sprite.svg#icon-close" />
+        <use href="/sprite.svg#icon-close" />
       </svg>
       <h3 className={css.name}>Registration</h3>
       <p className={css.info}>
@@ -68,7 +97,6 @@ const RegistrationForm = ({ onClose }) => {
               })}
               type="text"
               className={css.field}
-              name="name"
               placeholder="Name"
             />
             {errors?.name && (
