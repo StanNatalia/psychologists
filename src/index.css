@@ -58,7 +58,6 @@ svg {
 
 button {
   display: inline-block;
-  background-color: var(--main-button);
   cursor: pointer;
   color: var(--main-white);
   border-radius: 30px;

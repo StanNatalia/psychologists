@@ -1,5 +1,11 @@
+import Psychologists from "../components/Psychologists/Psychologists";
+
 const PsychologistsPage = () => {
-  return <div></div>;
+  return (
+    <>
+      <Psychologists />
+    </>
+  );
 };
 
 export default PsychologistsPage;

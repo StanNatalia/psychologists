@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../redux/slices/userSlice";
+import { toast } from "react-toastify";
 
 const LoginForm = ({ onClose }) => {
   const {
@@ -31,16 +32,14 @@ const LoginForm = ({ onClose }) => {
   const onSubmit = ({ email, password }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        return user;
-      })
-      .then((user) => {
-        console.log(user);
+      .then(async ({ user }) => {
+        const token = await user.getIdToken();
         dispatch(
           setUser({
+            name: user.displayName,
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
+            token,
           })
         );
         reset();
@@ -48,7 +47,7 @@ const LoginForm = ({ onClose }) => {
         navigate("/psychologists");
       })
       .catch((error) => {
-        console.error("Login error:", error);
+        toast.error("Incorrect email or password");
       });
   };
 
@@ -125,7 +124,7 @@ const LoginForm = ({ onClose }) => {
           </div>
         </div>
         <button type="submit" className={css.btn}>
-          Sign Up
+          Log In
         </button>
       </form>
     </div>

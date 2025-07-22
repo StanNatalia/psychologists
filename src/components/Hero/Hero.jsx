@@ -15,30 +15,30 @@ const Hero = () => {
         <a href="" className={css.link}>
           Get started
           <svg width="15" height="17">
-            <use href="/public/sprite.svg#icon-arrow"></use>
+            <use href="/sprite.svg#icon-arrow"></use>
           </svg>
         </a>
       </div>
       <div className={css.wrapperPhoto}>
         <img
-          src="/public/image.jpg"
+          src="/image.jpg"
           alt="Woman listening carefully"
           className={css.img}
         />
         <div className={css.detail1}>
           <svg width="15" height="25" className={css.svg1}>
-            <use href="/public/sprite.svg#icon-question" />
+            <use href="/sprite.svg#icon-question" />
           </svg>
         </div>
         <div className={css.detail2}>
           <svg width="20" height="20" className={css.svg2}>
-            <use href="/public/sprite.svg#icon-users" />
+            <use href="/sprite.svg#icon-users" />
           </svg>
         </div>
         <div className={css.rectangle}>
           <div className={css.square}>
             <svg width="30" height="30">
-              <use href="/public/sprite.svg#icon-check-mark"></use>
+              <use href="/sprite.svg#icon-check-mark"></use>
             </svg>
           </div>
           <div className={css.detailWrapper}>

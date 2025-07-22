@@ -8,6 +8,7 @@ import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const RegistrationForm = ({ onClose }) => {
   const {
@@ -38,19 +39,21 @@ const RegistrationForm = ({ onClose }) => {
 
   const onSubmit = ({ name, email, password }) => {
     const auth = getAuth();
-    console.log(auth);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        return updateProfile(user, { displayName: name }).then(() => user);
+        return updateProfile(user, { displayName: name }).then(() =>
+          user.getIdToken().then((token) => ({ user, token }))
+        );
       })
-      .then((user) => {
-        console.log(user);
+      .then(({ user, token }) => {
         dispatch(
           setUser({
+            name: user.displayName,
             email: user.email,
             id: user.uid,
-            token: user.accessToken,
+            token: token,
           })
         );
         reset();
@@ -58,7 +61,7 @@ const RegistrationForm = ({ onClose }) => {
         navigate("/psychologists");
       })
       .catch((error) => {
-        console.error("Registration error:", error);
+        toast.error("This email is already registered");
       });
   };
 

@@ -56,6 +56,12 @@
   border-radius: 50%;
 }
 
+.userWrapper {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
 .userLink {
   display: inline-block;
   border: 1px solid rgba(25, 26, 21, 0.2);
@@ -72,4 +78,21 @@
 .userActive {
   color: var(--main-white);
   background-color: var(--main-button);
+}
+
+.username {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 500;
+}
+
+.iconWrapper {
+  background-color: var(--main-button);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
