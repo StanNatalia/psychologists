@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { db } from "../../psychologists.json";
+import myData from "/src/psychologists.json";
 import { ref, onValue } from "firebase/database";
 
 const Psychologists = () => {
   const [psychologists, setPsychologists] = useState([]);
 
   useEffect(() => {
-    const dataRef = ref(db, "psychologists");
+    const dataRef = ref(myData, "psychologists");
 
     const unsubscribe = onValue(dataRef, (snapshot) => {
       const data = snapshot.val();
