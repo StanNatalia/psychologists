@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./Hero.module.css";
 
 const Hero = () => {
@@ -12,12 +13,12 @@ const Hero = () => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <a href="" className={css.link}>
+        <Link to="/psychologists" className={css.link}>
           Get started
           <svg width="15" height="17">
             <use href="/sprite.svg#icon-arrow"></use>
           </svg>
-        </a>
+        </Link>
       </div>
       <div className={css.wrapperPhoto}>
         <img

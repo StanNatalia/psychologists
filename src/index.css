@@ -68,3 +68,9 @@ button {
   justify-content: center;
   align-items: center;
 }
+
+.css-b62m3t-container:focus,
+.css-b62m3t-container:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+}

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ref, onValue } from "firebase/database";
 import { db } from "../../firebase.js";
 import css from "./Psychologists.module.css";
-import Modal from "../Modal/Modal.jsx";
 import AppointmentModal from "../AppointmentModal/AppointmentModal.jsx";
 
 const Psychologists = () => {
@@ -60,7 +59,7 @@ const Psychologists = () => {
                   <h3 className={css.title}>Psychologist</h3>
                   <div className={css.statisticsWrapper}>
                     <svg width="16" height="16" className={css.starIcon}>
-                      <use href="/public/sprite.svg#icon-favorite" />
+                      <use href="/sprite.svg#icon-favorite" />
                     </svg>
                     <p className={css.rating}>Rating: {psych.rating}</p>
 
@@ -73,7 +72,7 @@ const Psychologists = () => {
                     </p>
 
                     <svg width="26" height="22">
-                      <use href="/public/sprite.svg#icon-not-favorite" />
+                      <use href="/sprite.svg#icon-not-favorite" />
                     </svg>
                   </div>
                 </div>
@@ -123,7 +122,7 @@ const Psychologists = () => {
                                   height="16"
                                   className={css.starIcon}
                                 >
-                                  <use href="/public/sprite.svg#icon-favorite" />
+                                  <use href="/sprite.svg#icon-favorite" />
                                 </svg>
                                 <p className={css.reviewRating}>
                                   {review.rating}
