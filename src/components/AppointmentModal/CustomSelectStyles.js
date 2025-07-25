@@ -19,20 +19,39 @@ export const CustomSelectStyles = {
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isSelected
-      ? "#f0f0f0"
-      : state.isFocused
-      ? "#f5f5f5"
-      : "#fff",
-    color: "#191a15",
-    padding: "10px",
+    color: state.isDisabled || state.isSelected ? "#191a15" : "#8a8a89",
+    backgroundColor: "transparent",
+    paddingBottom: "0",
     cursor: "pointer",
+    textAlign: state.isDisabled ? "left" : "center",
+    fontSize: "16px",
+    marginBottom: "3px",
+    lineHeight: 1.25,
+    fontWeight: "500",
+    fontFamily: "Inter, sans-serif",
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   }),
   menu: (provided) => ({
     ...provided,
     borderRadius: "12px",
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
+    width: "160px",
+    right: 0,
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    paddingLeft: 10,
+    paddingTop: 16,
+    paddingBottom: 16,
+    maxHeight: "180px",
+    overflowY: "auto",
+    scrollbarWidth: "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
   }),
   placeholder: (provided) => ({
     ...provided,

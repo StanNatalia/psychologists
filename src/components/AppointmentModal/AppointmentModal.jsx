@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Select from "react-select";
 import { components } from "react-select";
 import { CustomSelectStyles } from "./CustomSelectStyles";
+import { toast } from "react-toastify";
 
 const AppointmentModal = ({ psychologist, onClose }) => {
   const { name, avatar_url } = psychologist;
@@ -42,6 +43,9 @@ const AppointmentModal = ({ psychologist, onClose }) => {
 
   const onSubmit = (data) => {
     console.log("Submitted:", data);
+    toast.success(
+      `Hello, ${data.name}! You are booked for a consultation with psychologist ${name} at ${data.time.label}. We are looking forward to seeing you!`
+    );
     reset();
     onClose();
     navigate("/");
@@ -54,22 +58,23 @@ const AppointmentModal = ({ psychologist, onClose }) => {
   };
 
   const options = [
-    { value: "09:00", label: "09:00" },
-    { value: "09:30", label: "09:30" },
-    { value: "10:00", label: "10:00" },
-    { value: "10:30", label: "10:30" },
-    { value: "11:00", label: "11:00" },
-    { value: "11:30", label: "11:30" },
-    { value: "12:00", label: "12:00" },
-    { value: "12:30", label: "12:30" },
-    { value: "13:00", label: "13:00" },
-    { value: "13:30", label: "13:30" },
-    { value: "14:00", label: "14:00" },
-    { value: "14:30", label: "14:30" },
-    { value: "15:00", label: "15:00" },
-    { value: "15:30", label: "15:30" },
-    { value: "16:00", label: "16:00" },
-    { value: "16:30", label: "16:30" },
+    { value: "", label: "Meeting time", isDisabled: true },
+    { value: "09:00", label: "09 : 00" },
+    { value: "09:30", label: "09 : 30" },
+    { value: "10:00", label: "10 : 00" },
+    { value: "10:30", label: "10 : 30" },
+    { value: "11:00", label: "11 : 00" },
+    { value: "11:30", label: "11 : 30" },
+    { value: "12:00", label: "12 : 00" },
+    { value: "12:30", label: "12 : 30" },
+    { value: "13:00", label: "13 : 00" },
+    { value: "13:30", label: "13 : 30" },
+    { value: "14:00", label: "14 : 00" },
+    { value: "14:30", label: "14 : 30" },
+    { value: "15:00", label: "15 : 00" },
+    { value: "15:30", label: "15 : 30" },
+    { value: "16:00", label: "16 : 00" },
+    { value: "16:30", label: "16 : 30" },
   ];
 
   const customComponents = {
@@ -165,6 +170,7 @@ const AppointmentModal = ({ psychologist, onClose }) => {
                           placeholder="00:00"
                           components={customComponents}
                           styles={CustomSelectStyles}
+                          menuPosition="absolute"
                         />
                       )}
                     />
