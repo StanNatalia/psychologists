@@ -75,6 +75,7 @@
 }
 
 .userActive {
+  border: none;
   color: var(--main-white);
   background-color: var(--main-button);
 }

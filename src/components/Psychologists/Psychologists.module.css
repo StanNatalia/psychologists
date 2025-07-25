@@ -1,10 +1,3 @@
-.wrapper {
-  padding: 68px 128px 100px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
 .filterWrapper {
   display: flex;
   flex-direction: column;
@@ -18,11 +11,21 @@
   color: var(--main-grey);
 }
 
-.psychologistsWrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
+  margin: 0;
   gap: 64px;
   align-items: center;
+  padding: 68px 128px 100px;
+  gap: 32px;
+}
+
+.psychWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
 }
 
 .list {
