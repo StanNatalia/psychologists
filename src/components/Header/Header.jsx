@@ -38,6 +38,9 @@ const Header = () => {
             <NavLink className={buildLinkPage} to="psychologists">
               Psychologists
             </NavLink>
+            <NavLink className={buildLinkPage} to="favorites">
+              Favorites
+            </NavLink>
           </nav>
         </div>
         <nav className={css.navUser}>

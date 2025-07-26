@@ -32,10 +32,7 @@ function App() {
             path="/favorites"
             element={<PrivateRoute element={<FavoritesPage />} />}
           />
-          <Route
-            path="/psychologists"
-            element={<PrivateRoute element={<PsychologistsPage />} />}
-          />
+          <Route path="/psychologists" element={<PsychologistsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 

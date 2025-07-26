@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
+import favoriteReducer from "./slices/favoriteSlice";
 import {
   persistStore,
   persistReducer,
@@ -11,15 +12,24 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-const persistConfig = {
+
+const userPersistConfig = {
   key: "auth-data",
   version: 1,
   storage,
   whitelist: ["name", "email", "token", "id"],
 };
 
+const favoritesPersistConfig = {
+  key: "favorites-data",
+  version: 1,
+  storage,
+  whitelist: ["favorites"],
+};
+
 const rootReducer = {
-  user: persistReducer(persistConfig, userReducer),
+  user: persistReducer(userPersistConfig, userReducer),
+  favorites: persistReducer(favoritesPersistConfig, favoriteReducer),
 };
 
 export const store = configureStore({
