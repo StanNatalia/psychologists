@@ -1,3 +1,4 @@
+import Favorites from "../components/Favorites/Favorites.jsx";
 import { useAuth } from "../hooks/use-auth.js";
 import { Navigate } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const FavoritesPage = () => {
 
   return (
     <>
-      <h1>Hello</h1>
+      <Favorites />
     </>
   );
 };

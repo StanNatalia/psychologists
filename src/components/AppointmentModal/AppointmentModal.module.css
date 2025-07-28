@@ -86,6 +86,12 @@
   gap: 8px;
 }
 
+.clockIcon {
+  width: 20px;
+  height: 20px;
+  stroke: black;
+}
+
 .field {
   border: 1px solid rgba(25, 26, 21, 0.1);
   border-radius: 12px;

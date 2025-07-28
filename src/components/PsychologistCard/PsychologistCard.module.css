@@ -54,6 +54,9 @@
 }
 
 .starIcon {
+  width: 16px;
+  height: 16px;
+  fill: #ffc531;
   margin-right: 8px;
 }
 

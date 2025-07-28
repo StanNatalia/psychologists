@@ -6,6 +6,7 @@ import Select from "react-select";
 import { components } from "react-select";
 import { CustomSelectStyles } from "./CustomSelectStyles";
 import { toast } from "react-toastify";
+import { LuClock } from "react-icons/lu";
 
 const AppointmentModal = ({ psychologist, onClose }) => {
   const { name, avatar_url } = psychologist;
@@ -80,9 +81,7 @@ const AppointmentModal = ({ psychologist, onClose }) => {
   const customComponents = {
     DropdownIndicator: (props) => (
       <components.DropdownIndicator {...props}>
-        <svg width="20" height="20">
-          <use href="/public/sprite.svg#icon-favorite" />
-        </svg>
+        <LuClock className={css.clockIcon} />
       </components.DropdownIndicator>
     ),
     IndicatorSeparator: () => null,

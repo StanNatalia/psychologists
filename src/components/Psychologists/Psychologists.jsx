@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import { ref, onValue } from "firebase/database";
-import { db } from "../../firebase.js";
 import css from "./Psychologists.module.css";
 import FilterPsychologists from "../FilterPsychologists/FilterPsychologists.jsx";
 import PsychologistCard from "../PsychologistCard/PsychologistCard.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPsychologists } from "../../redux/psychologists/operations.js";
+import { filterPsychologists } from "../../utils/filterPsychologists.js";
 
 const Psychologists = () => {
-  const [psychologists, setPsychologists] = useState([]);
   const [visibleCount, setVisibleCount] = useState(3);
   const [expandedIndexes, setExpandedIndexes] = useState([]);
   const [filterOption, setFilterOption] = useState("1");
+
+  const dispatch = useDispatch();
+
+  const psychologists = useSelector((state) => state.psychologists.all);
 
   const handleToggleMore = (index) => {
     setExpandedIndexes((prevIndexes) =>
@@ -20,40 +24,8 @@ const Psychologists = () => {
   };
 
   useEffect(() => {
-    const dataRef = ref(db, "psychologists");
-
-    const unsubscribe = onValue(dataRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        const psychologistsArray = Object.values(data);
-        setPsychologists(psychologistsArray);
-      }
-    });
-
-    return () => unsubscribe();
-  }, []);
-
-  const getFilteredPsychologists = () => {
-    const sorted = [...psychologists];
-
-    switch (filterOption) {
-      case "1": // A to Z
-        return sorted.sort((a, b) => a.name.localeCompare(b.name));
-      case "2": // Z to A
-        return sorted.sort((a, b) => b.name.localeCompare(a.name));
-      case "3": // Less than 170$
-        return sorted.filter((p) => p.price_per_hour < 170);
-      case "4": // Greater than 170$
-        return sorted.filter((p) => p.price_per_hour > 170);
-      case "5": // Popular
-        return sorted.sort((a, b) => b.rating - a.rating);
-      case "6": // Not popular
-        return sorted.sort((a, b) => a.rating - b.rating);
-      case "7": // Show all
-      default:
-        return sorted;
-    }
-  };
+    dispatch(fetchPsychologists());
+  }, [dispatch]);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 3);
@@ -70,7 +42,7 @@ const Psychologists = () => {
           />
         </div>
         <ul className={css.list}>
-          {getFilteredPsychologists()
+          {filterPsychologists(psychologists, filterOption)
             .slice(0, visibleCount)
             .map((psych, index) => (
               <PsychologistCard

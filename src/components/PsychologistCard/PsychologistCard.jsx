@@ -3,6 +3,8 @@ import css from "./PsychologistCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
+import AppointmentModal from "../AppointmentModal/AppointmentModal";
+import { FaStar } from "react-icons/fa";
 
 const PsychologistCard = ({
   psych,
@@ -44,9 +46,7 @@ const PsychologistCard = ({
         <div className={css.favoriteWrapper}>
           <h3 className={css.title}>Psychologist</h3>
           <div className={css.statisticsWrapper}>
-            <svg width="16" height="16" className={css.starIcon}>
-              <use href="/sprite.svg#icon-not-favorite" />
-            </svg>
+            <FaStar className={css.starIcon} />
             <p className={css.rating}>Rating: {psych.rating}</p>
 
             <span className={css.separator}></span>
@@ -104,9 +104,7 @@ const PsychologistCard = ({
                     <div>
                       <p className={css.reviewer}>{review.reviewer}</p>
                       <div className={css.reviewRatingWrapper}>
-                        <svg width="16" height="16" className={css.starIcon}>
-                          <use href="/sprite.svg#icon-favorite" />
-                        </svg>
+                        <FaStar className={css.starIcon} />
                         <p className={css.reviewRating}>{review.rating}</p>
                       </div>
                     </div>

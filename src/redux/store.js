@@ -12,6 +12,7 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import psychologistsReducer from "./psychologists/psychologistSlice";
 
 const userPersistConfig = {
   key: "auth-data",
@@ -30,12 +31,14 @@ const favoritesPersistConfig = {
 const rootReducer = {
   user: persistReducer(userPersistConfig, userReducer),
   favorites: persistReducer(favoritesPersistConfig, favoriteReducer),
+  psychologists: psychologistsReducer,
 };
 
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      thunk: true,
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
