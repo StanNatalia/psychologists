@@ -43,7 +43,6 @@ const AppointmentModal = ({ psychologist, onClose }) => {
   if (!psychologist) return null;
 
   const onSubmit = (data) => {
-    console.log("Submitted:", data);
     toast.success(
       `Hello, ${data.name}! You are booked for a consultation with psychologist ${name} at ${data.time.label}. We are looking forward to seeing you!`
     );

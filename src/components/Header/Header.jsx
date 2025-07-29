@@ -1,8 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom";
 import css from "./Header.module.css";
 import clsx from "clsx";
-import { removeUser } from "../../redux/slices/userSlice";
+import { removeUser } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/user/userSelectors";
 
 const buildLinkPage = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -15,7 +16,7 @@ const buildLinkUser = ({ isActive }) => {
 const Header = () => {
   const location = useLocation();
 
-  const { name, email } = useSelector((state) => state.user);
+  const { name, email } = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -38,9 +39,11 @@ const Header = () => {
             <NavLink className={buildLinkPage} to="psychologists">
               Psychologists
             </NavLink>
-            <NavLink className={buildLinkPage} to="favorites">
-              Favorites
-            </NavLink>
+            {email && (
+              <NavLink className={buildLinkPage} to="favorites">
+                Favorites
+              </NavLink>
+            )}
           </nav>
         </div>
         <nav className={css.navUser}>

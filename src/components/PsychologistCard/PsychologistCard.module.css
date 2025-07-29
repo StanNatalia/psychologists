@@ -60,6 +60,11 @@
   margin-right: 8px;
 }
 
+.favoriteIcon {
+  fill: var(--main-white);
+  stroke: var(--main-black);
+}
+
 .rating {
   margin-right: 16px;
   font-weight: 500;

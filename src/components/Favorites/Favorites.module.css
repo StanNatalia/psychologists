@@ -45,3 +45,8 @@
   background-color: var(--main-white);
   color: var(--main-black);
 }
+
+.text {
+  font-size: 20px;
+  color: var(--main-button);
+}

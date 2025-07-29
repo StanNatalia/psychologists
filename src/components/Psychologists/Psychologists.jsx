@@ -5,6 +5,7 @@ import PsychologistCard from "../PsychologistCard/PsychologistCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPsychologists } from "../../redux/psychologists/operations.js";
 import { filterPsychologists } from "../../utils/filterPsychologists.js";
+import { selectPsychologists } from "../../redux/psychologists/psychologistSelectors.js";
 
 const Psychologists = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -13,7 +14,7 @@ const Psychologists = () => {
 
   const dispatch = useDispatch();
 
-  const psychologists = useSelector((state) => state.psychologists.all);
+  const psychologists = useSelector(selectPsychologists);
 
   const handleToggleMore = (index) => {
     setExpandedIndexes((prevIndexes) =>

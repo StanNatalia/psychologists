@@ -9,14 +9,12 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite: (state, action) => {
-      const name = action.payload;
-      console.log("Before toggle:", state.favorites);
-      if (state.favorites.includes(name)) {
-        state.favorites = state.favorites.filter((fav) => fav !== name);
+      const index = state.favorites.indexOf(action.payload);
+      if (index === -1) {
+        state.favorites.push(action.payload);
       } else {
-        state.favorites.push(name);
+        state.favorites.splice(index, 1);
       }
-      console.log("After toggle:", state.favorites, typeof state.favorites);
     },
   },
 });

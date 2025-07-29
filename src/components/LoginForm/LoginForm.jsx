@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../redux/slices/userSlice";
+import { setUser } from "../../redux/user/userSlice";
 import { toast } from "react-toastify";
 
 const LoginForm = ({ onClose }) => {

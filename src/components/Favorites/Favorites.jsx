@@ -1,17 +1,28 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PsychologistCard from "../PsychologistCard/PsychologistCard";
 import css from "./Favorites.module.css";
 import { filterPsychologists } from "../../utils/filterPsychologists";
 import FilterPsychologists from "../FilterPsychologists/FilterPsychologists";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchPsychologists } from "../../redux/psychologists/operations";
+import { selectFavorites } from "../../redux/favorite/favoritesSelectors";
+import { selectPsychologists } from "../../redux/psychologists/psychologistSelectors";
 
 const Favorites = () => {
   const [visibleCount, setVisibleCount] = useState(3);
   const [filterOption, setFilterOption] = useState("1");
   const [expandedIndexes, setExpandedIndexes] = useState([]);
 
-  const favorites = useSelector((state) => state.favorites.favorites);
-  const psychologists = useSelector((state) => state.psychologists.all);
+  const dispatch = useDispatch();
+  const psychologists = useSelector(selectPsychologists);
+
+  useEffect(() => {
+    if (psychologists.length === 0) {
+      dispatch(fetchPsychologists());
+    }
+  }, [dispatch, psychologists.length]);
+
+  const favorites = useSelector(selectFavorites);
 
   const favoritePsychs = psychologists.filter((p) =>
     favorites.includes(p.name)
@@ -33,7 +44,9 @@ const Favorites = () => {
 
   return (
     <div className={css.wrapper}>
-      {favoritePsychs.length > 0 ? (
+      {!psychologists.length ? (
+        <p className={css.text}>Loading...</p>
+      ) : favoritePsychs.length > 0 ? (
         <div className={css.psychWrapper}>
           <div className={css.filterWrapper}>
             <h5 className={css.filter}>Filter</h5>
@@ -53,15 +66,14 @@ const Favorites = () => {
               />
             ))}
           </ul>
+          {visibleCount < filterFavorites.length && (
+            <button className={css.btn} onClick={handleLoadMore}>
+              Load More
+            </button>
+          )}
         </div>
       ) : (
-        <p className={css.text}>No favorites</p>
-      )}
-
-      {visibleCount < filterFavorites.length && (
-        <button className={css.btn} onClick={handleLoadMore}>
-          Load More
-        </button>
+        <p className={css.text}>You don't have any favorites yet</p>
       )}
     </div>
   );

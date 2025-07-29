@@ -2,9 +2,11 @@ import { useState } from "react";
 import css from "./PsychologistCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { toggleFavorite } from "../../redux/slices/favoriteSlice";
+import { toggleFavorite } from "../../redux/favorite/favoriteSlice";
 import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import { FaStar } from "react-icons/fa";
+import { selectToken } from "../../redux/user/userSelectors";
+import { selectFavorites } from "../../redux/favorite/favoritesSelectors";
 
 const PsychologistCard = ({
   psych,
@@ -14,9 +16,9 @@ const PsychologistCard = ({
 }) => {
   const [selectedPsych, setSelectedPsych] = useState(null);
   const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites.favorites || []);
-  const token = useSelector((state) => state.user.token);
-  const isFavorite = favorites.includes(psych.name);
+  const favorites = useSelector(selectFavorites || []);
+  const token = useSelector(selectToken);
+  const isFavorite = Array.isArray(favorites) && favorites.includes(psych.name);
   const handleFavoriteClick = (name) => {
     if (!token) {
       toast.warn("Please log in to use favorites");
@@ -59,6 +61,7 @@ const PsychologistCard = ({
               width="26"
               height="22"
               onClick={() => handleFavoriteClick(psych.name)}
+              className={css.favoriteIcon}
             >
               <use
                 href={

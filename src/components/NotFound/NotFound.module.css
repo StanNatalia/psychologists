@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  color: var(--main-black);
+}
+
+.title {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-weight: 700;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.homeLink {
+  font-size: 20px;
+  color: var(--main-button);
+  text-decoration: none;
+  border: 1px solid var(--main-button);
+  padding: 20px 40px;
+  border-radius: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.homeLink:hover {
+  background-color: var(--main-button-hover);
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .title {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .message {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .homeLink {
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+}

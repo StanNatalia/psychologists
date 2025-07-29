@@ -13,7 +13,6 @@ export const getPsychologistsFromFirebase = async () => {
       return [];
     }
   } catch (error) {
-    console.log("Error", error);
     return [];
   }
 };

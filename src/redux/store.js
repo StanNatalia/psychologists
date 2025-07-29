@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
-import favoriteReducer from "./slices/favoriteSlice";
+import userReducer from "./user/userSlice";
+import favoriteReducer from "./favorite/favoriteSlice";
 import {
   persistStore,
   persistReducer,
