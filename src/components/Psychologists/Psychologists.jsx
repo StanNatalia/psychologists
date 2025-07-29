@@ -5,7 +5,11 @@ import PsychologistCard from "../PsychologistCard/PsychologistCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPsychologists } from "../../redux/psychologists/operations.js";
 import { filterPsychologists } from "../../utils/filterPsychologists.js";
-import { selectPsychologists } from "../../redux/psychologists/psychologistSelectors.js";
+import {
+  selectIsLoading,
+  selectPsychologists,
+} from "../../redux/psychologists/psychologistSelectors.js";
+import { ClockLoader } from "react-spinners";
 
 const Psychologists = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -15,6 +19,7 @@ const Psychologists = () => {
   const dispatch = useDispatch();
 
   const psychologists = useSelector(selectPsychologists);
+  const isLoading = useSelector(selectIsLoading);
 
   const handleToggleMore = (index) => {
     setExpandedIndexes((prevIndexes) =>
@@ -34,36 +39,44 @@ const Psychologists = () => {
 
   return (
     <div className={css.wrapper}>
-      <div className={css.psychWrapper}>
-        <div className={css.filterWrapper}>
-          <h5 className={css.filter}>Filter</h5>
-          <FilterPsychologists
-            value={filterOption}
-            onChange={setFilterOption}
-          />
+      {isLoading ? (
+        <div className={css.loaderWrapper}>
+          <ClockLoader color="var(--main-button)" size={60} />
         </div>
-        <ul className={css.list}>
-          {filterPsychologists(psychologists, filterOption)
-            .slice(0, visibleCount)
-            .map((psych, index) => (
-              <PsychologistCard
-                key={psych.name}
-                psych={psych}
-                index={index}
-                expandedIndexes={expandedIndexes}
-                handleToggleMore={handleToggleMore}
+      ) : (
+        <>
+          <div className={css.psychWrapper}>
+            <div className={css.filterWrapper}>
+              <h5 className={css.filter}>Filter</h5>
+              <FilterPsychologists
+                value={filterOption}
+                onChange={setFilterOption}
               />
-            ))}
-        </ul>
-      </div>
+            </div>
 
-      {visibleCount < psychologists.length && (
-        <button className={css.btn} onClick={handleLoadMore}>
-          Load More
-        </button>
+            <ul className={css.list}>
+              {filterPsychologists(psychologists, filterOption)
+                .slice(0, visibleCount)
+                .map((psych, index) => (
+                  <PsychologistCard
+                    key={psych.name}
+                    psych={psych}
+                    index={index}
+                    expandedIndexes={expandedIndexes}
+                    handleToggleMore={handleToggleMore}
+                  />
+                ))}
+            </ul>
+          </div>
+
+          {visibleCount < psychologists.length && (
+            <button className={css.btn} onClick={handleLoadMore}>
+              Load More
+            </button>
+          )}
+        </>
       )}
     </div>
   );
 };
-
 export default Psychologists;

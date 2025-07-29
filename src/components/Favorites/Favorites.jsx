@@ -6,7 +6,11 @@ import FilterPsychologists from "../FilterPsychologists/FilterPsychologists";
 import { useEffect, useState } from "react";
 import { fetchPsychologists } from "../../redux/psychologists/operations";
 import { selectFavorites } from "../../redux/favorite/favoritesSelectors";
-import { selectPsychologists } from "../../redux/psychologists/psychologistSelectors";
+import {
+  selectIsLoading,
+  selectPsychologists,
+} from "../../redux/psychologists/psychologistSelectors";
+import { ClockLoader } from "react-spinners";
 
 const Favorites = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -15,6 +19,7 @@ const Favorites = () => {
 
   const dispatch = useDispatch();
   const psychologists = useSelector(selectPsychologists);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     if (psychologists.length === 0) {
@@ -44,8 +49,10 @@ const Favorites = () => {
 
   return (
     <div className={css.wrapper}>
-      {!psychologists.length ? (
-        <p className={css.text}>Loading...</p>
+      {isLoading ? (
+        <div className={css.loaderWrapper}>
+          <ClockLoader color="var(--main-button)" size={60} />
+        </div>
       ) : favoritePsychs.length > 0 ? (
         <div className={css.psychWrapper}>
           <div className={css.filterWrapper}>
@@ -55,6 +62,7 @@ const Favorites = () => {
               onChange={setFilterOption}
             />
           </div>
+
           <ul className={css.favoritesWrapper}>
             {filterFavorites.slice(0, visibleCount).map((psych, index) => (
               <PsychologistCard
@@ -66,6 +74,7 @@ const Favorites = () => {
               />
             ))}
           </ul>
+
           {visibleCount < filterFavorites.length && (
             <button className={css.btn} onClick={handleLoadMore}>
               Load More

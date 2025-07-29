@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense>
         <Routes location={background || location}>
           <Route path="/" element={<HomePage />} />
           <Route

@@ -3,6 +3,8 @@ import { fetchPsychologists } from "./operations";
 
 const initialState = {
   all: [],
+  isLoading: false,
+  error: null,
 };
 
 const psychologistSlice = createSlice({
@@ -14,9 +16,18 @@ const psychologistSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPsychologists.fulfilled, (state, action) => {
-      state.all = action.payload;
-    });
+    builder
+      .addCase(fetchPsychologists.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchPsychologists.fulfilled, (state, action) => {
+        state.all = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchPsychologists.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
