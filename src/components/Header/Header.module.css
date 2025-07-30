@@ -22,6 +22,7 @@
 
 .navUser {
   display: flex;
+  flex-direction: row;
   gap: 8px;
 }
 
@@ -95,4 +96,125 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .header {
+    padding: 24px 70px;
+  }
+
+  .wrapper {
+    gap: 110px;
+  }
+
+  .logo {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  .userLink {
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .username {
+    gap: 8px;
+    font-size: 12px;
+  }
+  .iconWrapper {
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 990px) {
+  .header {
+    padding: 24px 40px;
+  }
+
+  .wrapper {
+    gap: 70px;
+  }
+
+  .navPage {
+    gap: 20px;
+  }
+  .userWrapper {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 790px) {
+  .wrapper {
+    gap: 100px;
+  }
+
+  .navPage {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .active::after {
+    left: -12%;
+    top: 6px;
+    transform: translateX(-50%);
+  }
+
+  .navUser {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .userWrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .iconWrapper {
+    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 670px) {
+  .wrapper {
+    gap: 100px;
+  }
+
+  .navPage {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .active::after {
+    left: -12%;
+    top: 6px;
+    transform: translateX(-50%);
+  }
+}
+@media (max-width: 670px) {
+  .header {
+    padding: 24px 20px;
+  }
+
+  .wrapper {
+    gap: 80px;
+  }
+}
+
+@media (max-width: 510px) {
+  .header {
+    padding: 24px 20px;
+  }
+
+  .wrapper {
+    gap: 50px;
+  }
 }

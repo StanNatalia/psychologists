@@ -24,7 +24,7 @@
   display: flex;
   justify-content: center;
   gap: 125px;
-  padding-top: 78px;
+  padding: 78px 60px 0px;
 }
 
 .wrapperInfo {
@@ -137,4 +137,88 @@
 
 .svg2 {
   transform: rotate(-15deg);
+}
+
+@media (max-width: 1330px) {
+  .wrapper {
+    gap: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 60px;
+  }
+
+  .title {
+    font-size: 70px;
+  }
+
+  .info {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.33;
+    width: 450px;
+  }
+
+  .link {
+    gap: 12px;
+    width: 180px;
+    border-radius: 30px;
+    padding: 14px 30px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .rectangle {
+    border-radius: 15px;
+    width: 250px;
+    height: 90px;
+    gap: 16px;
+    padding: 22px;
+  }
+
+  .square {
+    border-radius: 13px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .about {
+    font-size: 11px;
+  }
+
+  .quantity {
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .rectangle {
+    border-radius: 15px;
+    width: 190px;
+    height: 80px;
+    padding: 10px;
+  }
+
+  .square {
+    display: none;
+  }
+
+  .about {
+    font-size: 12px;
+  }
+
+  .quantity {
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .info {
+    width: 350px;
+  }
+
+  .detailWrapper {
+    align-items: center;
+    gap: 5px;
+  }
 }

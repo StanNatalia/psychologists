@@ -52,4 +52,4 @@ https://www.figma.com/design/I5vjNb0NsJOpQRnRpMloSY/Psychologists.Services?node-
 
 5. Open in your browser at:
 
-https://rental-car-app-git-main-natasha-stans-projects.vercel.app/
+https://psychologists-1lnktul1x-natasha-stans-projects.vercel.app/
