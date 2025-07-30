@@ -11,6 +11,7 @@ import {
   selectPsychologists,
 } from "../../redux/psychologists/psychologistSelectors";
 import { ClockLoader } from "react-spinners";
+import { motion } from "framer-motion";
 
 const Favorites = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -47,6 +48,15 @@ const Favorites = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
+  const listVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <div className={css.wrapper}>
       {isLoading ? (
@@ -63,7 +73,12 @@ const Favorites = () => {
             />
           </div>
 
-          <ul className={css.favoritesWrapper}>
+          <motion.ul
+            initial="hidden"
+            animate="visible"
+            variants={listVariants}
+            className={css.favoritesWrapper}
+          >
             {filterFavorites.slice(0, visibleCount).map((psych, index) => (
               <PsychologistCard
                 key={psych.name}
@@ -73,7 +88,7 @@ const Favorites = () => {
                 handleToggleMore={handleToggleMore}
               />
             ))}
-          </ul>
+          </motion.ul>
 
           {visibleCount < filterFavorites.length && (
             <button className={css.btn} onClick={handleLoadMore}>

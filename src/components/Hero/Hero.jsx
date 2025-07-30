@@ -1,24 +1,42 @@
 import { Link } from "react-router-dom";
 import css from "./Hero.module.css";
+import { motion } from "framer-motion";
+const MotionLink = motion.create(Link);
 
 const Hero = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.wrapperInfo}>
-        <h1 className={css.title}>
+        <motion.h1
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className={css.title}
+        >
           The road to the <span className={css.span}>depths</span> of the human
           soul
-        </h1>
-        <p className={css.info}>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className={css.info}
+        >
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
-        </p>
-        <Link to="/psychologists" className={css.link}>
+        </motion.p>
+        <MotionLink
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          to="/psychologists"
+          className={css.link}
+        >
           Get started
           <svg width="15" height="17">
             <use href="/sprite.svg#icon-arrow"></use>
           </svg>
-        </Link>
+        </MotionLink>
       </div>
       <div className={css.wrapperPhoto}>
         <img

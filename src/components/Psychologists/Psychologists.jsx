@@ -10,6 +10,7 @@ import {
   selectPsychologists,
 } from "../../redux/psychologists/psychologistSelectors.js";
 import { ClockLoader } from "react-spinners";
+import { motion } from "framer-motion";
 
 const Psychologists = () => {
   const [visibleCount, setVisibleCount] = useState(3);
@@ -37,6 +38,15 @@ const Psychologists = () => {
     setVisibleCount((prev) => prev + 3);
   };
 
+  const listVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <div className={css.wrapper}>
       {isLoading ? (
@@ -54,7 +64,12 @@ const Psychologists = () => {
               />
             </div>
 
-            <ul className={css.list}>
+            <motion.ul
+              initial="hidden"
+              animate="visible"
+              variants={listVariants}
+              className={css.list}
+            >
               {filterPsychologists(psychologists, filterOption)
                 .slice(0, visibleCount)
                 .map((psych, index) => (
@@ -66,7 +81,7 @@ const Psychologists = () => {
                     handleToggleMore={handleToggleMore}
                   />
                 ))}
-            </ul>
+            </motion.ul>
           </div>
 
           {visibleCount < psychologists.length && (

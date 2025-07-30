@@ -7,6 +7,7 @@ import AppointmentModal from "../AppointmentModal/AppointmentModal";
 import { FaStar } from "react-icons/fa";
 import { selectToken } from "../../redux/user/userSelectors";
 import { selectFavorites } from "../../redux/favorite/favoritesSelectors";
+import { motion } from "framer-motion";
 
 const PsychologistCard = ({
   psych,
@@ -33,8 +34,13 @@ const PsychologistCard = ({
       : "Read more";
   }
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, duration: 0.9 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <li key={psych.name} className={css.item}>
+    <motion.li key={psych.name} className={css.item} variants={itemVariants}>
       <div className={css.imgWrapper}>
         <img
           className={css.img}
@@ -131,7 +137,7 @@ const PsychologistCard = ({
           </div>
         )}
       </div>
-    </li>
+    </motion.li>
   );
 };
 
