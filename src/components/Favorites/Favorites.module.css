@@ -28,6 +28,7 @@
   font-size: 14px;
   line-height: 1.29;
   color: var(--main-grey);
+  margin-bottom: 8px;
 }
 
 .btn {
