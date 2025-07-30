@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/slices/userSlice";
+import { setUser } from "../../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
