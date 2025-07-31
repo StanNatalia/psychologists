@@ -48,7 +48,6 @@ const AppointmentModal = ({ psychologist, onClose }) => {
     );
     reset();
     onClose();
-    navigate("/");
   };
 
   const handleOverlayClick = (e) => {
