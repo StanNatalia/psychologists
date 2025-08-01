@@ -4,6 +4,8 @@ import clsx from "clsx";
 import { removeUser } from "../../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/userSelectors";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { useState } from "react";
 
 const buildLinkPage = ({ isActive }) => {
   return clsx(css.link, isActive && css.active);
@@ -15,6 +17,7 @@ const buildLinkUser = ({ isActive }) => {
 
 const Header = () => {
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const { name, email } = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -32,54 +35,68 @@ const Header = () => {
               <span className={css.span}>psychologists.</span>services
             </button>
           </NavLink>
-          <nav className={css.navPage}>
-            <NavLink className={buildLinkPage} to="/">
-              Home
-            </NavLink>
-            <NavLink className={buildLinkPage} to="psychologists">
-              Psychologists
-            </NavLink>
-            {email && (
-              <NavLink className={buildLinkPage} to="favorites">
-                Favorites
-              </NavLink>
-            )}
-          </nav>
-        </div>
-        <nav className={css.navUser}>
-          {email ? (
-            <div className={css.userWrapper}>
-              <div className={css.username}>
-                <div className={css.iconWrapper}>
-                  <svg width="24" height="24">
-                    <use href="/sprite.svg#icon-user" />
-                  </svg>
-                </div>
-                {name}
-              </div>
-              <button className={css.userLink} onClick={handleLogout}>
-                Log out
+          <div className={clsx(css.navigation, isOpen && css.mobNavigation)}>
+            {isOpen && (
+              <button
+                className={css.menuCloseBtn}
+                onClick={() => setIsOpen(false)}
+              >
+                X
               </button>
-            </div>
-          ) : (
-            <>
-              <NavLink
-                className={buildLinkUser}
-                to="/login"
-                state={{ backgroundLocation: location }}
-              >
-                Log In
+            )}
+            <nav className={css.menuPage}>
+              <NavLink className={buildLinkPage} to="/">
+                Home
               </NavLink>
-              <NavLink
-                className={buildLinkUser}
-                to="/registration"
-                state={{ backgroundLocation: location }}
-              >
-                Registration
+              <NavLink className={buildLinkPage} to="psychologists">
+                Psychologists
               </NavLink>
-            </>
-          )}
-        </nav>
+              {email && (
+                <NavLink className={buildLinkPage} to="favorites">
+                  Favorites
+                </NavLink>
+              )}
+            </nav>
+            <nav className={css.menuUser}>
+              {email ? (
+                <div className={css.userWrapper}>
+                  <div className={css.username}>
+                    <div className={css.iconWrapper}>
+                      <svg width="24" height="24">
+                        <use href="/sprite.svg#icon-user" />
+                      </svg>
+                    </div>
+                    {name}
+                  </div>
+                  <button className={css.userLink} onClick={handleLogout}>
+                    Log out
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <NavLink
+                    className={buildLinkUser}
+                    to="/login"
+                    state={{ backgroundLocation: location }}
+                  >
+                    Log In
+                  </NavLink>
+                  <NavLink
+                    className={buildLinkUser}
+                    to="/registration"
+                    state={{ backgroundLocation: location }}
+                  >
+                    Registration
+                  </NavLink>
+                </>
+              )}
+            </nav>
+          </div>
+        </div>
+
+        <button className={css.menuOpenBtn} onClick={() => setIsOpen(!isOpen)}>
+          <GiHamburgerMenu className={css.iconBurger} />
+        </button>
       </header>
     </>
   );

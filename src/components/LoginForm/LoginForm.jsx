@@ -67,9 +67,11 @@ const LoginForm = ({ onClose }) => {
 
   return (
     <div className={css.formWrapper}>
-      <svg width="32" height="32" onClick={onClose} className={css.closeIcon}>
-        <use href="/sprite.svg#icon-close" />
-      </svg>
+      <button>
+        <svg width="32" height="32" onClick={onClose} className={css.closeIcon}>
+          <use href="/sprite.svg#icon-close" />
+        </svg>
+      </button>
       <h3 className={css.name}>Log In</h3>
       <p className={css.info}>
         Welcome back! Please enter your credentials to access your account and

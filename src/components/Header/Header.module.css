@@ -1,7 +1,4 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 24px 120px;
   width: 100%;
   border-bottom: 1px solid rgba(25, 26, 21, 0.2);
@@ -9,18 +6,52 @@
 
 .wrapper {
   display: flex;
-  gap: 130px;
   align-items: center;
 }
 
-.navPage {
+.menuOpenBtn {
+  display: none;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobNavigation {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--main-button);
+  flex-direction: column;
+  gap: 50px;
+  z-index: 100;
+}
+
+.menuPage {
   display: flex;
   gap: 40px;
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
 
-.navUser {
+.menuCloseBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.menuUser {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -32,6 +63,7 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  margin-right: 130px;
 }
 
 .span {
@@ -103,10 +135,6 @@
     padding: 24px 70px;
   }
 
-  .wrapper {
-    gap: 110px;
-  }
-
   .logo {
     font-weight: 600;
     font-size: 16px;
@@ -136,40 +164,23 @@
 
 @media (max-width: 990px) {
   .header {
-    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
   }
 
-  .wrapper {
-    gap: 70px;
+  .menuPage,
+  .menuUser {
+    display: none;
   }
 
-  .navPage {
-    gap: 20px;
-  }
-  .userWrapper {
-    gap: 15px;
-  }
-}
-
-@media (max-width: 790px) {
-  .wrapper {
-    gap: 100px;
+  .menuOpenBtn {
+    display: block;
   }
 
-  .navPage {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .active::after {
-    left: -12%;
-    top: 6px;
-    transform: translateX(-50%);
-  }
-
-  .navUser {
-    flex-direction: column;
-    gap: 8px;
+  .iconBurger {
+    fill: var(--main-black);
+    width: 30px;
+    height: 30px;
   }
 
   .userWrapper {
@@ -180,41 +191,5 @@
     border-radius: 6px;
     width: 20px;
     height: 20px;
-  }
-}
-
-@media (max-width: 670px) {
-  .wrapper {
-    gap: 100px;
-  }
-
-  .navPage {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .active::after {
-    left: -12%;
-    top: 6px;
-    transform: translateX(-50%);
-  }
-}
-@media (max-width: 670px) {
-  .header {
-    padding: 24px 20px;
-  }
-
-  .wrapper {
-    gap: 80px;
-  }
-}
-
-@media (max-width: 510px) {
-  .header {
-    padding: 24px 20px;
-  }
-
-  .wrapper {
-    gap: 50px;
   }
 }

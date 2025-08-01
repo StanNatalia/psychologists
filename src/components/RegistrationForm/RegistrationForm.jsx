@@ -71,9 +71,11 @@ const RegistrationForm = ({ onClose }) => {
 
   return (
     <div className={css.formWrapper}>
-      <svg width="32" height="32" className={css.closeIcon} onClick={onClose}>
-        <use href="/sprite.svg#icon-close" />
-      </svg>
+      <button>
+        <svg width="32" height="32" className={css.closeIcon} onClick={onClose}>
+          <use href="/sprite.svg#icon-close" />
+        </svg>
+      </button>
       <h3 className={css.name}>Registration</h3>
       <p className={css.info}>
         Thank you for your interest in our platform! In order to register, we
