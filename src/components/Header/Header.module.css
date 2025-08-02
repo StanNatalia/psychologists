@@ -1,12 +1,14 @@
 .header {
   padding: 24px 120px;
   width: 100%;
+  display: flex;
   border-bottom: 1px solid rgba(25, 26, 21, 0.2);
 }
 
 .wrapper {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .menuOpenBtn {
@@ -20,35 +22,11 @@
   align-items: center;
 }
 
-.mobNavigation {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: var(--main-button);
-  flex-direction: column;
-  gap: 50px;
-  z-index: 100;
-}
-
 .menuPage {
   display: flex;
   gap: 40px;
   line-height: 1.25;
   letter-spacing: -0.01em;
-}
-
-.menuCloseBtn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #333;
-  cursor: pointer;
-  z-index: 999;
 }
 
 .menuUser {
@@ -132,64 +110,111 @@
 
 @media (max-width: 1200px) {
   .header {
-    padding: 24px 70px;
-  }
-
-  .logo {
-    font-weight: 600;
-    font-size: 16px;
-  }
-
-  .link {
-    font-size: 14px;
-  }
-
-  .userLink {
-    border-radius: 30px;
-    padding: 12px 20px;
-    font-weight: 500;
-    font-size: 14px;
-  }
-
-  .username {
-    gap: 8px;
-    font-size: 12px;
-  }
-  .iconWrapper {
-    border-radius: 6px;
-    width: 30px;
-    height: 30px;
-  }
-}
-
-@media (max-width: 990px) {
-  .header {
-    display: flex;
     justify-content: space-between;
-  }
-
-  .menuPage,
-  .menuUser {
-    display: none;
+    align-items: center;
   }
 
   .menuOpenBtn {
     display: block;
+    cursor: pointer;
+    z-index: 10;
   }
 
-  .iconBurger {
+  .menuCloseBtn {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+
+  .burgerIcon {
     fill: var(--main-black);
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .mobMenuPage {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation {
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    left: -100%;
+    bottom: 0;
+    z-index: 10;
+    background-color: var(--main-white);
+    transition: left 1s;
+  }
+
+  .closeIcon {
+    stroke: black;
+  }
+
+  .active {
+    left: 0;
+  }
+  .active::after {
+    content: none;
+  }
+
+  .active:hover,
+  .active:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+
+  .userLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+  }
+
+  .link {
+    font-weight: 600;
+    font-size: 36px;
+  }
+
+  .userLink {
+    border-radius: 40px;
+    padding: 20px 50px;
+    font-weight: 500;
+    font-size: 22px;
   }
 
   .userWrapper {
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
   }
-  .iconWrapper {
-    border-radius: 6px;
-    width: 20px;
-    height: 20px;
+
+  .username {
+    gap: 20px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 800px) {
+  .header {
+    padding: 24px 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .header {
+    padding: 24px 30px;
+  }
+
+  .logo {
+    margin-right: 0;
   }
 }

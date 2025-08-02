@@ -35,24 +35,28 @@ const Header = () => {
               <span className={css.span}>psychologists.</span>services
             </button>
           </NavLink>
-          <div className={clsx(css.navigation, isOpen && css.mobNavigation)}>
-            {isOpen && (
-              <button
-                className={css.menuCloseBtn}
+          <div className={clsx(css.navigation, isOpen && css.active)}>
+            <nav className={clsx(css.menuPage, isOpen && css.mobMenuPage)}>
+              <NavLink
+                className={buildLinkPage}
                 onClick={() => setIsOpen(false)}
+                to="/"
               >
-                X
-              </button>
-            )}
-            <nav className={css.menuPage}>
-              <NavLink className={buildLinkPage} to="/">
                 Home
               </NavLink>
-              <NavLink className={buildLinkPage} to="psychologists">
+              <NavLink
+                className={buildLinkPage}
+                onClick={() => setIsOpen(false)}
+                to="psychologists"
+              >
                 Psychologists
               </NavLink>
               {email && (
-                <NavLink className={buildLinkPage} to="favorites">
+                <NavLink
+                  className={buildLinkPage}
+                  onClick={() => setIsOpen(false)}
+                  to="favorites"
+                >
                   Favorites
                 </NavLink>
               )}
@@ -68,35 +72,53 @@ const Header = () => {
                     </div>
                     {name}
                   </div>
-                  <button className={css.userLink} onClick={handleLogout}>
+                  <button
+                    className={css.userLink}
+                    onClick={() => {
+                      handleLogout(), setIsOpen(false);
+                    }}
+                  >
                     Log out
                   </button>
                 </div>
               ) : (
                 <>
-                  <NavLink
-                    className={buildLinkUser}
-                    to="/login"
-                    state={{ backgroundLocation: location }}
-                  >
-                    Log In
-                  </NavLink>
-                  <NavLink
-                    className={buildLinkUser}
-                    to="/registration"
-                    state={{ backgroundLocation: location }}
-                  >
-                    Registration
-                  </NavLink>
+                  <div className={css.userWrapper}>
+                    <NavLink
+                      className={buildLinkUser}
+                      onClick={() => setIsOpen(false)}
+                      to="/login"
+                      state={{ backgroundLocation: location }}
+                    >
+                      Log In
+                    </NavLink>
+                    <NavLink
+                      className={buildLinkUser}
+                      onClick={() => setIsOpen(false)}
+                      to="/registration"
+                      state={{ backgroundLocation: location }}
+                    >
+                      Registration
+                    </NavLink>
+                  </div>
                 </>
               )}
             </nav>
           </div>
         </div>
-
-        <button className={css.menuOpenBtn} onClick={() => setIsOpen(!isOpen)}>
-          <GiHamburgerMenu className={css.iconBurger} />
-        </button>
+        <div onClick={() => setIsOpen(!isOpen)} className={css.mobileBtn}>
+          {isOpen ? (
+            <button className={css.menuCloseBtn}>
+              <svg width="32" height="32" className={css.closeIcon}>
+                <use href="/sprite.svg#icon-close" />
+              </svg>
+            </button>
+          ) : (
+            <button className={css.menuOpenBtn}>
+              <GiHamburgerMenu className={css.burgerIcon} />
+            </button>
+          )}
+        </div>
       </header>
     </>
   );
