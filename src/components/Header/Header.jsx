@@ -36,6 +36,16 @@ const Header = () => {
             </button>
           </NavLink>
           <div className={clsx(css.navigation, isOpen && css.active)}>
+            {isOpen && (
+              <button
+                onClick={() => setIsOpen(false)}
+                className={css.menuCloseBtn}
+              >
+                <svg width="32" height="32" className={css.closeIcon}>
+                  <use href="/sprite.svg#icon-close" />
+                </svg>
+              </button>
+            )}
             <nav className={clsx(css.menuPage, isOpen && css.mobMenuPage)}>
               <NavLink
                 className={buildLinkPage}
@@ -106,19 +116,14 @@ const Header = () => {
             </nav>
           </div>
         </div>
-        <div onClick={() => setIsOpen(!isOpen)} className={css.mobileBtn}>
-          {isOpen ? (
-            <button className={css.menuCloseBtn}>
-              <svg width="32" height="32" className={css.closeIcon}>
-                <use href="/sprite.svg#icon-close" />
-              </svg>
-            </button>
-          ) : (
+
+        {!isOpen && (
+          <div onClick={() => setIsOpen(true)} className={css.mobileBtn}>
             <button className={css.menuOpenBtn}>
               <GiHamburgerMenu className={css.burgerIcon} />
             </button>
-          )}
-        </div>
+          </div>
+        )}
       </header>
     </>
   );

@@ -108,6 +108,19 @@
   align-items: center;
 }
 
+.menuCloseBtn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+}
+
+.closeIcon {
+  stroke: black;
+  width: 32px;
+  height: 32px;
+}
+
 @media (max-width: 1200px) {
   .header {
     justify-content: space-between;
@@ -123,7 +136,6 @@
   .menuCloseBtn {
     display: block;
     cursor: pointer;
-    position: relative;
     z-index: 10;
   }
 
