@@ -52,4 +52,4 @@ https://www.figma.com/design/I5vjNb0NsJOpQRnRpMloSY/Psychologists.Services?node-
 
 5. Open in your browser at:
 
-https://psychologists-1lnktul1x-natasha-stans-projects.vercel.app/
+https://psychologists-dusky.vercel.app/
