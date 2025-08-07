@@ -24,6 +24,7 @@
 
 .psychWrapper {
   display: flex;
+  margin: 0 20px;
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;

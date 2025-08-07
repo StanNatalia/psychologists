@@ -79,6 +79,7 @@
   flex-direction: column;
   gap: 16px;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .numberDateWrapper {
@@ -152,4 +153,59 @@ select option {
   letter-spacing: -0.01em;
   color: var(--main-white);
   font-weight: 500;
+}
+
+@media (max-width: 750px) {
+  .modal {
+    padding: 45px;
+  }
+
+  .title {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .info {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .psychologistWrapper {
+    margin-bottom: 25px;
+  }
+
+  .selectWrapper {
+    width: 100%;
+  }
+
+  .formWrapper {
+    margin-bottom: 20px;
+  }
+
+  .field {
+    font-size: 14px;
+    padding: 6px 14px;
+    height: 44px;
+  }
+
+  .numberDateWrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    font-size: 26px;
+  }
+
+  .info {
+    font-size: 12px;
+  }
+
+  .btn {
+    height: 44px;
+  }
 }

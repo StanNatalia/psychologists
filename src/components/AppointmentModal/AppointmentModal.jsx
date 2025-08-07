@@ -7,11 +7,16 @@ import { components } from "react-select";
 import { CustomSelectStyles } from "./CustomSelectStyles";
 import { toast } from "react-toastify";
 import { LuClock } from "react-icons/lu";
+import { useMediaQuery } from "react-responsive";
 
 const AppointmentModal = ({ psychologist, onClose }) => {
   const { name, avatar_url } = psychologist;
 
   const navigate = useNavigate();
+
+  const isMobile = useMediaQuery({ maxWidth: 750 });
+
+  const selectStyles = CustomSelectStyles(isMobile);
 
   const {
     register,
@@ -166,7 +171,7 @@ const AppointmentModal = ({ psychologist, onClose }) => {
                           options={options}
                           placeholder="00:00"
                           components={customComponents}
-                          styles={CustomSelectStyles}
+                          styles={selectStyles}
                           menuPosition="absolute"
                         />
                       )}

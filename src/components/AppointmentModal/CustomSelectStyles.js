@@ -1,15 +1,17 @@
-export const CustomSelectStyles = {
+export const CustomSelectStyles = (isMobile) => ({
   control: (provided, state) => ({
     ...provided,
-    padding: "0px 18px",
+    padding: "0px 14px",
     borderRadius: "12px",
     border: "1px solid rgba(25, 26, 21, 0.1)",
     backgroundColor: "#fbfbfb",
+    justifyContent: "space-between",
     cursor: "pointer",
-    height: "52px",
+    height: isMobile ? "44px" : "52px",
     color: "#191a15",
-    width: "232px",
+    width: isMobile ? "100%" : "232px",
     boxShadow: "none",
+    fontSize: isMobile ? "14px" : "16px",
     outline: "none",
     borderColor: state.isFocused
       ? "rgba(25, 26, 21, 0.1)"
@@ -25,7 +27,7 @@ export const CustomSelectStyles = {
     paddingBottom: "0",
     cursor: "pointer",
     textAlign: state.isDisabled ? "left" : "center",
-    fontSize: "16px",
+    fontSize: isMobile ? "14px" : "16px",
     marginBottom: "3px",
     lineHeight: 1.25,
     fontWeight: "500",
@@ -59,6 +61,7 @@ export const CustomSelectStyles = {
     ...provided,
     color: "#191a15",
     paddingTop: 0,
+    fontSize: isMobile ? "14px" : "16px",
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
@@ -67,4 +70,4 @@ export const CustomSelectStyles = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-};
+});

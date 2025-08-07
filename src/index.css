@@ -82,3 +82,9 @@ button {
 .css-13rx1sg-menu {
   margin: 0 !important;
 }
+
+@media (max-width: 750px) {
+  .css-b62m3t-container {
+    width: 100%;
+  }
+}
